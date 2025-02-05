@@ -1,5 +1,7 @@
 # Facebook Phishing Demonstration
 
+**Hosted Live Link**: [https://fbiphonegiveaway.netlify.app/](https://fbiphonegiveaway.netlify.app/)
+
 This project is a React application created to demonstrate phishing techniques as part of a school presentation. The example used in this demonstration is a fake Facebook giveaway.
 
 ## Table of Contents
@@ -49,7 +51,7 @@ To run this project locally, follow these steps:
     ```
 
 ## Usage
-Once the development server is running, open your browser and navigate to `http://localhost:3000` to view the application. Use the interface to explore how phishing attacks can be executed and learn about prevention techniques.
+Once the development server is running, open your browser and navigate to `http://localhost:5173` to view the application. Use the interface to explore how phishing attacks can be executed and learn about prevention techniques.
 
 ## Disclaimer
 This project is for educational purposes only. It is intended to raise awareness about phishing attacks and should not be used for any malicious activities. Always use ethical practices when dealing with cybersecurity topics.
