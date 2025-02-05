@@ -1,0 +1,40 @@
+/*  custom css here  */
+
+.cooperation-div{
+    position: relative;
+    width: 600px;
+    margin: auto;
+}
+.cooperation-text{
+    font-family: "Pacifico", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.cooperation-text::before{
+    content: '"';
+    position: absolute;
+    top:-70%;
+    left: 5%;
+    font-size: 80px;
+    font-family: "Permanent Marker", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.cooperation-text::after{
+    content: '"';
+    position: absolute;
+    bottom: -90%;
+    right: 5%;
+    font-size: 80px;
+    font-family: "Permanent Marker", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.underline{
+    width: 450px;
+    position: absolute;
+    left: 50%;
+    top: 175%;
+    transform: translate(-50%, -50%);
+}
