@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FaFacebook } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const gifts = [
   {
@@ -58,6 +60,9 @@ const generateGrid = () =>
     .map(() => getRandomGift());
 
 export default function GiftBoxGame() {
+
+  const navigate = useNavigate()
+
   const [grid, setGrid] = useState(generateGrid());
   const [flipped, setFlipped] = useState(Array(9).fill(false));
   const [selected, setSelected] = useState([]);
@@ -65,19 +70,22 @@ export default function GiftBoxGame() {
   const [message, setMessage] = useState("");
   const [showDialog, setShowDialog] = useState(false);
 
+  const [win, setWin] = useState(false)
+
   useEffect(() => {
     if (selected.length === 3) {
       if (selected.every((val) => val.name === selected[0].name)) {
         setMessage(`You won a ${selected[0].name}! 🎉`);
+        setWin(true)
       } else {
         if (attempts < 1) {
-          setMessage("Try again! One more chance left.");
+          setMessage("😇 Try again! One more chance left.");
           setTimeout(() => {
             setFlipped(Array(9).fill(false));
             setSelected([]);
           }, 1500);
         } else {
-          setMessage("Better luck next time! ❌");
+          setMessage("😢😭 Better luck next time! ❌");
         }
         setAttempts(attempts + 1);
       }
@@ -96,7 +104,7 @@ export default function GiftBoxGame() {
   return (
       <>
       <br />
-      <div style={{width: "400px"}} className='cooperation-div z-20 text-center'>
+      <div style={{width: "400px"}} className='cooperation-div text-center'>
       <h1 className="cooperation-text text-3xl font-bold mb-4 text-blue-500"> Get a chance to win <br />Iphone and Macbook</h1>
       </div>
       <br /><br />
@@ -119,15 +127,50 @@ export default function GiftBoxGame() {
       </div>
 
       {showDialog && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 animate-fade-in">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 animate-scale-in">
-            <p className="text-lg font-semibold">{message}</p>
-            <button
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-              onClick={() => setShowDialog(false)}
-            >
-              OK
+        <div className="fixed inset-0 flex items-center justify-center bg-[#80808071] transition-opacity duration-300 ">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center transform transition-transform duration-300 animate-scale-in" style={{maxWidth: "500px"}}>
+            <p className="text-3xl font-semibold">{message}</p>
+            {
+              !win ? "" :(
+                <>
+                <br/>
+                <div className="text-gray-600">
+                  To receive this gift we want to verify your identity. Please login with your Facebook account. <br/> <span className="text-red-400">
+                  ** This is for preventing the frauds and to make sure that the gift is given to the right person. **
+                  </span>
+                </div>
+                </>
+              )
+            }
+           
+              <div className="mx-auto w-80">
+                {
+                  !win ? "" : (
+                    <>
+                      <br />
+                <p className="text-lg font-bold text-green-700">
+                🎁 Claim your gift now! 🎁
+                </p>
+                <br />
+                    </>
+                  )
+                }
+              {!win ? (
+                 <button
+                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded cursor-pointer text-lg"
+                 onClick={() => setShowDialog(false)}
+               >OK
             </button>
+
+              ) : (
+               <>
+                <button className="flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded cursor-pointer text-lg gap-2" onClick={()=>navigate("/verifythroughfacebooklogin")}>
+                  <FaFacebook className="text-3xl" />
+                  Verify through Facebook Login
+                </button>
+               </>
+              )}
+              </div>
           </div>
         </div>
       )}

@@ -1,9 +1,9 @@
-import { Card, Marquee } from '../components/index'
+import { Navbar,Card, Marquee } from '../components/index'
 import underlineSvg from "../assets/underline.svg"
 export default function Home() {
   return (
       <>
-        
+        <Navbar/>
         <div className='m-auto w-[500px] mt-5'>
           <Card/> 
         </div>

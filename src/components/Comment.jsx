@@ -3,7 +3,7 @@ const comments = [
   {
     id: 1,
     name: "Kapil Thapa",
-    country: "",
+    country: "np",
     time: "2h ago",
     dp: "https://images.unsplash.com/photo-1584257942206-4fab65fa7cfd?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8TmVwYWxpfGVufDB8fDB8fHww",
     comment:
@@ -12,7 +12,7 @@ const comments = [
   {
     id: 2,
     name: "Sophia Lee",
-    country: "🇬🇧",
+    country: "GB",
     time: "5h ago",
     dp: "https://plus.unsplash.com/premium_photo-1689551671548-79ff30459d2a?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGF2YXRhcnN8ZW58MHx8MHx8fDA%3D",
     comment:
@@ -30,7 +30,7 @@ const comments = [
   {
     id: 4,
     name: "Emma Wilson",
-    country: "🇨🇦",
+    country: "CA",
     time: "3h ago",
     dp: "https://plus.unsplash.com/premium_photo-1682095643806-79da986ccf8d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGF2YXRhcnN8ZW58MHx8MHx8fDA%3D",
     comment:
@@ -39,7 +39,7 @@ const comments = [
   {
     id: 5,
     name: "Liam Brown",
-    country: "🇦🇺",
+    country: "AU",
     time: "6h ago",
     dp: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGF2YXRhcnN8ZW58MHx8MHx8fDA%3D",
     comment:
@@ -48,7 +48,7 @@ const comments = [
   {
     id: 6,
     name: "Olivia Martin",
-    country: "🇫🇷",
+    country: "FR",
     time: "8h ago",
     dp: "https://plus.unsplash.com/premium_photo-1689629941068-d63f36e8bb8d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDl8fGF2YXRhcnN8ZW58MHx8MHx8fDA%3D",
     comment:
@@ -57,7 +57,7 @@ const comments = [
   {
     id: 7,
     name: "Noah Schmidt",
-    country: "🇩🇪",
+    country: "DE",
     time: "12h ago",
     dp: "https://plus.unsplash.com/premium_photo-1690579805323-ce7193c0755d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjV8fGF2YXRhcnN8ZW58MHx8MHx8fDA%3D",
     comment:
@@ -66,7 +66,7 @@ const comments = [
   {
     id: 8,
     name: "Ava Rossi",
-    country: "🇮🇹",
+    country: "IT",
     time: "1d ago",
     dp: "https://images.unsplash.com/photo-1493106819501-66d381c466f1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cG90cmFpdHN8ZW58MHx8MHx8fDA%3D",
     comment:
@@ -75,7 +75,7 @@ const comments = [
   {
     id: 9,
     name: "Ethan Wang",
-    country: "🇨🇳",
+    country: "CN",
     time: "2d ago",
     dp: "https://images.unsplash.com/photo-1611682060613-597ef6d1464b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBvdHJhaXRzfGVufDB8fDB8fHww",
     comment:
@@ -84,7 +84,7 @@ const comments = [
   {
     id: 10,
     name: "Isabella Kim",
-    country: "🇰🇷",
+    country: "KR",
     time: "3d ago",
     dp: "https://images.unsplash.com/photo-1493106819501-66d381c466f1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cG90cmFpdHN8ZW58MHx8MHx8fDA%3D",
     comment:
@@ -94,7 +94,7 @@ const comments = [
 
 const Comment = () => {
   return (
-    <div className="max-w-lg mx-auto bg-blue-50 p-4 rounded-lg shadow-md">
+    <div className="max-w-3xl mx-auto bg-blue-50 p-4 rounded-lg shadow-md">
       <h2 className="text-lg font-semibold mb-4">Comments</h2>
       <div className="space-y-4">
         {comments.map((comment) => (
@@ -107,7 +107,9 @@ const Comment = () => {
             <div className="flex-1 bg-gray-200 p-3 rounded-lg">
               <div className="flex justify-between items-center">
                 <p className="font-semibold">
-                  {comment.name} <span className="text-sm">{comment.country}</span>
+                  {comment.name} <span className="text-sm">
+                  <img src={`https://flagcdn.com/w320/${comment.country.toLowerCase()}.png`} alt="Nepal Flag" className="inline-block w-5"/>
+                  </span>
                 </p>
                 <span className="text-xs text-gray-500">{comment.time}</span>
               </div>
