@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter, Route, Routes } from "react-router";
-import { Home, Test, PageNotFound } from "./pages/index.js";
+import { Home, PageNotFound, SpinWheelPage } from "./pages/index.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -11,9 +11,9 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path="/spinthewheel" element={<SpinWheelPage />} />
         </Route>
+          <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

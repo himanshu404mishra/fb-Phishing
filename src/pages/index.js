@@ -1,4 +1,4 @@
 import Home from "./Home"
-import Test from "./Test"
 import PageNotFound from "./PageNotFound"
-export {Home, Test, PageNotFound}
+import SpinWheelPage from "./SpinWheelPage"
+export {Home, PageNotFound, SpinWheelPage}
