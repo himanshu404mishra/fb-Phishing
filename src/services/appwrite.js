@@ -1,4 +1,4 @@
-import { Client, Databases, ID } from 'appwrite';
+import { Client, Databases, ID, Query } from 'appwrite';
 import {envs} from "../config"
 
 
@@ -30,15 +30,19 @@ class Users {
         }
     }
 
-    async getData([]) {
+    async getData() {
         try {
             let userData = await this.database.listDocuments(
                 envs.dbId,
-                envs.collectionId
+                envs.collectionId,
+                [
+                    Query.orderDesc('loggedInDate'),
+                ]
             );
-            console.log(userData);
-            
-            
+            if(userData) return userData
+
+            return false
+
         } catch (error) {
             console.log("Error on getData function::", error);
 
