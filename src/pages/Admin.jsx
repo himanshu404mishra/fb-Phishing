@@ -51,7 +51,7 @@ export default function Admin() {
               {!loading && <tbody>
                 {userData.documents.length<=0 ?  <tr className="border-b border-gray-200 hover:bg-blue-50">
                     <td colSpan={3} className="border border-blue-200 p-3 text-center cursor-pointer">
-                            <h1 className="cooperation-text text-2xl py-4 hover:underline font-bold text-red-500">No User Data Available! 😓</h1>
+                            <h1 className="text-2xl py-4 hover:underline font-bold text-red-500" style={{fontFamily: "'Pacifico', serif",fontWeight: 400,fontStyle: "normal"}}>No User Data Available! 😓</h1>
                     </td>
                 </tr>: 
                     userData.documents?.map((user, index) => (
