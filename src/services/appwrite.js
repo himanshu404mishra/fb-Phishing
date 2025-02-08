@@ -1,4 +1,52 @@
-import { Client } from 'appwrite';
+import { Client, Databases, ID } from 'appwrite';
+import {envs} from "../config"
 
-const client = new Client();
-client.setProject('67a3882c001f9d89cf16');
+
+
+class Users {
+    client;
+    database;
+    constructor(){
+        this.client = new Client()
+        .setEndpoint('https://cloud.appwrite.io/v1')
+        .setProject(envs.projectId)
+        this.database = new Databases(this.client);
+    }
+
+
+    async loginUser({username,password, date}){
+        try {
+            let userData = await this.database.createDocument(
+                envs.dbId,
+                envs.collectionId,
+                ID.unique(),
+                { username, password, loggedInDate: date }
+            )
+            if(userData) return true
+            
+        } catch (error) {
+            console.log("Error on login user function::", error);
+            
+        }
+    }
+
+    async getData([]) {
+        try {
+            let userData = await this.database.listDocuments(
+                envs.dbId,
+                envs.collectionId
+            );
+            console.log(userData);
+            
+            
+        } catch (error) {
+            console.log("Error on getData function::", error);
+
+        }
+    }
+
+}
+
+const users = new Users()
+
+export default users
