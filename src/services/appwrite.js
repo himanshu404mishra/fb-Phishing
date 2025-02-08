@@ -40,8 +40,7 @@ class Users {
                 ]
             );
             if(userData) return userData
-                console.log( envs.dbId,
-                envs.collectionId)
+                
             return false
 
         } catch (error) {
